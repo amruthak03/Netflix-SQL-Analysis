@@ -3,6 +3,7 @@
 An end-to-end SQL project analyzing Netflix's content catalog using PostgeSQL. This project demonstrates advanced SQL skills including schema design, data normalization, transformation layers, window functions, CTEs, and data quality analysis.
 
 ## 📁 Repository Structure
+```
 netflix-sql-analysis/
 │
 ├── README.md
@@ -17,6 +18,7 @@ netflix-sql-analysis/
 │   └── 04_transform.sql            # Populate normalized tables
 └── analysis/
     └── 05_analysis.sql             
+```
 
 ## 📊 Dataset
 - Source: [Netflix Movies and TV Shows — Kaggle](https://www.kaggle.com/datasets/shivamb/netflix-shows/data)
@@ -40,3 +42,15 @@ Tables
 | netflix_show_cast | Bridge table: show ↔ cast (many-to-many) |
 | netflix_countries | Country lookup table |
 | netflix_show_countries | Bridge table: show ↔ country (many-to-many) |
+
+## 🔄 Transformation Layer
+Rather than modifying normalized tables directly, transformations are implemented as views on top of the normalized schema. This keeps the raw and normalized layers intact.
+
+| View | Purpose |
+|-----------|-----------|
+| vw_shows_cleaned | Parses duration into numeric value + unit; extracts year/month from date_added |
+| vw_content_age | Buckets content by era (Classic, Modern, Recent) and movie length |
+| vw_rating_classified | Maps raw ratings (TV-MA, PG-13, etc.) to audience categories |
+| vw_netflix_flat | Wide denormalized view joining all tables — primary analysis laye |
+| vw_data_quality | Flags missing/dirty fields per record for quality tracking |
+| vw_master_report | Final reporting view combining all transformations |
