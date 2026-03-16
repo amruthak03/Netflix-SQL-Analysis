@@ -29,6 +29,14 @@ The raw CSV was normalized into a proper relational schema to handle multi-value
 Tables
 
 | Table | Description |
-|---|---|---|
-| netflix_raw, Raw ingestion table — mirrors source CSV exactly | Row 1, Col 2 | Row 1, Col 3 |
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+|-----------|-----------|
+| netflix_raw | Raw ingestion table; mirrors source CSV |
+| netflix_shows | Core show metadata (cleaned, typed) |
+| netflix_genres | Genre lookup table |
+| netflix_show_genres | Bridge table: show ↔ genre (many-to-many) |
+| netflix_directors | Director lookup table |
+| netflix_show_directors | Bridge table: show ↔ director (many-to-many) |
+| netflix_cast | Cast member lookup table |
+| netflix_show_cast | Bridge table: show ↔ cast (many-to-many) |
+| netflix_countries | Country lookup table |
+| netflix_show_countries | Bridge table: show ↔ country (many-to-many) |
